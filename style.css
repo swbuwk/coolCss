@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+:root {
+    --background: rgb(28, 27, 31);
+    --block: rgb(76, 76, 76);
+    --block-hover: rgb(58, 156, 237);
+    --loading-hover: rgb(232, 52, 214);
+    --block-size: 150px;
+    --loading-size: 50px;
+    --delay: 3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: 'Fredoka One', cursive;
+    color: white;
+}
+
+body {
+    background-color: var(--background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100vw;
+}
+
+h1 {
+    display: block;
+    margin-top: 200px;
+    margin-bottom: 300px;
+    font-size: 90px;
+    text-shadow: 0 0 10px white;
+}
+
+.container {
+    width: 200px;
+    height: 400px;
+    transform: skewY(-15deg);
+    margin-bottom: 600px;
+}
+
+.container span {
+    display: block;
+    position: relative;
+    z-index: var(--i);
+    width: 100%;
+    height: 10%;
+    background-color: var(--block);
+    transition: 0.25s;
+
+    animation: 6s animateBlocks ease-in-out infinite;
+    animation-delay: calc(-1s * (10 - var(--i)));
+}
+
+.container span:hover {
+    background-color: var(--block-hover);
+    transition: 0.05s;
+    box-shadow: 0px 0px 30px var(--block-hover);
+}
+
+.container span::before {
+    content: '';
+    position: absolute;
+    top: calc(0px - var(--block-size) / 2);
+    left: calc(0px - var(--block-size));
+    height: 100%;
+    width: var(--block-size);
+    filter: brightness(0.8);
+    background-color: var(--block);
+    transition: 0.25s;
+    transform: skewY(45deg);
+}
+
+.container span:hover::before {
+    background-color: var(--block-hover);
+    transition: 0.05s;
+    box-shadow: 0px 0px 30px var(--block-hover);
+
+}
+
+.container span::after {
+    content: '';
+    position: absolute;
+    top: calc(0px - var(--block-size));
+    left: calc(0px - var(--block-size) / 2);
+    height: var(--block-size);
+    width: 200px;
+    filter: brightness(1.2);
+    background-color: var(--block);
+    transition: 0.25s;
+    transform: skewX(45deg);
+}
+
+.container span:hover::after {
+    background-color: var(--block-hover);
+    transition: 0.05s;
+    box-shadow: 0px 0px 30px var(--block-hover);
+}
+
+@keyframes animateBlocks {
+    0% {
+        transform: translateX(0px)
+    }
+    45%, 55% {
+        transform: translateX(50px)
+    }
+    100% {
+        transform: translateX(0px)
+    }
+}
+
+.loading {
+    width: 300px;
+    height: 300px;
+    transform: skewY(-15deg);
+    position: relative;
+    left: 7.5%;
+}
+
+.loading span {
+    display: block;
+    position: absolute;
+    z-index: calc(var(--x) + var(--y) + var(--z));
+
+    left: calc(var(--x)*-33% + var(--z)*33% / 2);
+    top: calc(var(--y)*-33% + var(--z)*33% / 2);
+    width: 33.33%;
+    height: 33.33%;
+    background-color: var(--block);
+    transition: 0.25s;
+
+    animation: 2s scaling ease-in-out infinite;
+}
+
+.loading span:hover {
+    background-color: var(--loading-hover);
+    transition: 0.05s;
+    box-shadow: 0px 0px 30px var(--loading-hover);
+}
+
+.loading span::before {
+    content: '';
+    position: absolute;
+    top: calc(0px - var(--loading-size) / 2);
+    left: calc(0px - var(--loading-size));
+    height: 100%;
+    width: calc(var(--loading-size) * 1);
+    filter: brightness(0.8);
+    background-color: var(--block);
+    transition: 0.25s;
+    transform: skewY(45deg);
+}
+
+.loading span:hover::before {
+    background-color: var(--loading-hover);
+    transition: 0.05s;
+    box-shadow: 0px 0px 30px var(--loading-hover);
+
+}
+
+.loading span::after {
+    content: '';
+    position: absolute;
+    top: calc(0px - var(--loading-size));
+    left: calc(0px - var(--loading-size) / 2);
+    height: var(--loading-size);
+    width: calc(var(--loading-size) * 2);
+    filter: brightness(1.2);
+    background-color: var(--block);
+    transition: 0.25s;
+    transform: skewX(45deg);
+}
+
+.loading span:hover::after {
+    background-color: var(--loading-hover);
+    transition: 0.05s;
+    box-shadow: 0px 0px 30px var(--loading-hover);
+}
+
+@keyframes scaling {
+    0% {
+        transform: scale(0.95)
+    }
+    50% {
+        transform: scale(0.75)
+    }
+    100% {
+        transform: scale(0.95)
+    }
+}
